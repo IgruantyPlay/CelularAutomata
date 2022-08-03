@@ -1,3 +1,5 @@
+const cols = 64, rows = 64;
+
 let grid;
 let paused = false;
 
@@ -6,7 +8,7 @@ function setup() {
     for (let element of document.getElementsByClassName("p5Canvas")) {
         element.addEventListener("contextmenu", (e) => e.preventDefault());
     }
-    grid = new Grid(64, 64);
+    grid = new Grid(cols, rows);
     frameRate(60);
 }
 function draw() {
@@ -31,3 +33,4 @@ function keyPressed() {
         paused = !paused;
     
 }
+var reset_grid = () => grid = new Grid(cols, rows);
