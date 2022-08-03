@@ -3,8 +3,11 @@ let paused = false;
 
 function setup() {
     createCanvas(800, 800);
+    for (let element of document.getElementsByClassName("p5Canvas")) {
+        element.addEventListener("contextmenu", (e) => e.preventDefault());
+    }
     grid = new Grid(64, 64);
-    frameRate(30);
+    frameRate(60);
 }
 function draw() {
     background(0);
@@ -12,10 +15,11 @@ function draw() {
     if(mouseIsPressed) {
         let x = Math.floor(mouseX / grid.pixelw);
         let y = Math.floor(mouseY / grid.pixelh);
-        
         if(x >= 0 && x < grid.c && y >= 0 && y < grid.r) {
-            grid.set(1, x, y);
-            console.log(`${x}:${y}`)
+            if(mouseButton === LEFT)
+                grid.set(1, x, y);
+            else if(mouseButton === RIGHT)
+                grid.set(0, x, y);
         }
     } else {
         if(!paused)
