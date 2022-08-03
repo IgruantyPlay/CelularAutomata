@@ -1,14 +1,14 @@
-const cols = 64, rows = 64;
+const pixelSize = 16;
 
 let grid;
 let paused = false;
 
 function setup() {
-    createCanvas(800, 800);
+    createCanvas(window.innerWidth, window.innerHeight);
     for (let element of document.getElementsByClassName("p5Canvas")) {
         element.addEventListener("contextmenu", (e) => e.preventDefault());
     }
-    grid = new Grid(cols, rows);
+    grid = new Grid(pixelSize);
     frameRate(60);
 }
 function draw() {
@@ -31,6 +31,16 @@ function draw() {
 function keyPressed() {
     if(keyCode === ENTER)
         paused = !paused;
-    
+    if(keyCode === BACKSPACE)
+        reset_grid();
+    if(keyCode === DOWN_ARROW)
+    {
+        paused = true;
+        grid.step();
+    }
 }
-var reset_grid = () => grid = new Grid(cols, rows);
+function windowResized() { 
+    resizeCanvas(window.innerWidth, window.innerHeight);
+    reset_grid();
+}
+var reset_grid = () => { grid = new Grid(pixelSize); }

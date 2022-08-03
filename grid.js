@@ -1,9 +1,11 @@
 class Grid {
-    constructor(rows, columns) {
-        this.r = rows;
-        this.c = columns;
-        this.pixelw = width / this.r;
-        this.pixelh = height / this.c;
+    constructor(pixelsize) {
+        this.pixelw = pixelsize;
+        this.pixelh = pixelsize;
+        this.r = Math.floor(height / this.pixelh);
+        this.c = Math.floor(width / this.pixelw);
+        console.log(width);
+        console.log(height);
         this.cells = []
         for(let i = 0; i < this.r * this.c; i++) {
             this.cells[i] = 0;
@@ -38,8 +40,8 @@ class Grid {
     }
     step() {
         let temp = [...this.cells]
-        for(let i = 0; i < this.r; i++) {
-            for(let j = 0; j < this.c; j++) {
+        for(let i = 0; i < this.c; i++) {
+            for(let j = 0; j < this.r; j++) {
                 let nbs = this.countNeighbors(temp, i, j);
                 if(nbs == 2)
                     this.set(this.get(i, j), i, j);
