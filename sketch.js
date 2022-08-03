@@ -1,20 +1,29 @@
 let grid;
+let paused = false;
 
 function setup() {
     createCanvas(800, 800);
     grid = new Grid(64, 64);
-    grid.set(1, 10, 10);
-    grid.set(1, 11, 11);
-    grid.set(1, 11, 12);
-    grid.set(1, 10, 13);
-    grid.set(1, 9, 12);
-    grid.set(1, 9, 11);
-    grid.set(1, 10, 12);
-    grid.set(1, 13, 13);
     frameRate(30);
 }
 function draw() {
     background(0);
     grid.show();
-    grid.step();
+    if(mouseIsPressed) {
+        let x = Math.floor(mouseX / grid.pixelw);
+        let y = Math.floor(mouseY / grid.pixelh);
+        
+        if(x >= 0 && x < grid.c && y >= 0 && y < grid.r) {
+            grid.set(1, x, y);
+            console.log(`${x}:${y}`)
+        }
+    } else {
+        if(!paused)
+            grid.step();
+    }
+}
+function keyPressed() {
+    if(keyCode === ENTER)
+        paused = !paused;
+    
 }
