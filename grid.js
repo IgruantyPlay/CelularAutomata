@@ -54,13 +54,27 @@ class Grid {
         }
     }
     show() {
-        for(let i = 0; i < this.r; i++) {
-            for(let j = 0; j < this.c; j++) {
-                let idx = j + i * this.c;
-                stroke(0);
-                fill(this.full(this.cells, idx) ? 255 : 0);
-                rect(j * this.pixelw, i * this.pixelh, this.pixelw, this.pixelh);
+        noStroke();
+        loadPixels();
+        for(let i = 0; i < width; i++) {
+            for(let j = 0; j < height; j++) {
+                let pixidx = 4 * (i + j * width);
+                let x = Math.floor(i / this.pixelw);
+                let y = Math.floor(j / this.pixelh);
+                let pixelc = this.full(this.cells, x + y * this.c) ? 255 : 0;
+                pixels[pixidx + 0] = pixelc;
+                pixels[pixidx + 1] = pixelc;
+                pixels[pixidx + 2] = pixelc;
+                pixels[pixidx + 3] = 255;
             }
         }
+        updatePixels();
+        // for(let i = 0; i < this.r; i++) {
+        //     for(let j = 0; j < this.c; j++) {
+        //         let idx = j + i * this.c;
+        //         fill(this.full(this.cells, idx) ? 255 : 0);
+        //         rect(j * this.pixelw, i * this.pixelh, this.pixelw, this.pixelh);
+        //     }
+        // }
     }
 }

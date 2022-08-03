@@ -27,6 +27,7 @@ function draw() {
         if(!paused)
             grid.step();
     }
+    frameRate(30);
 }
 function keyPressed() {
     if(keyCode === ENTER)
