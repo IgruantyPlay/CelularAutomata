@@ -1,5 +1,5 @@
-const pixelSize = 16;
-
+const pixelSize = 2;
+const rule = "S:012345678 B:1" // interchangable
 let grid;
 let paused = false;
 
@@ -8,8 +8,8 @@ function setup() {
     for (let element of document.getElementsByClassName("p5Canvas")) {
         element.addEventListener("contextmenu", (e) => e.preventDefault());
     }
-    grid = new Grid(pixelSize);
-    frameRate(60);
+    grid = new Grid(pixelSize, rule);
+    frameRate(30);
 }
 function draw() {
     background(0);
@@ -39,9 +39,20 @@ function keyPressed() {
         paused = true;
         grid.step();
     }
+    if(keyCode === SHIFT) {
+        reset_grid();
+        for(let i = 0; i < grid.c * grid.r / 2; i++) {
+            let x = Math.floor(genRandomArbitrary(0, grid.c))
+            let y = Math.floor(genRandomArbitrary(0, grid.r))
+            grid.set(1, x, y);
+        }
+    }
+}
+function genRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
 }
 function windowResized() { 
     resizeCanvas(window.innerWidth, window.innerHeight);
     reset_grid();
 }
-var reset_grid = () => { grid = new Grid(pixelSize); }
+var reset_grid = () => { grid = new Grid(pixelSize, rule); }
