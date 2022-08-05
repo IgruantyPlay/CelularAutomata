@@ -1,5 +1,5 @@
-const pixelSize = 2;
-const rule = "S:012345678 B:1" // interchangable
+const pixelSize = 16;
+const rule = "S:23 B:3" // interchangable
 let grid;
 let paused = false;
 
