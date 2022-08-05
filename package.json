@@ -1,0 +1,22 @@
+{
+  "name": "celularautomata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IgruantyPlay/CelularAutomata.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IgruantyPlay/CelularAutomata/issues"
+  },
+  "homepage": "https://github.com/IgruantyPlay/CelularAutomata#readme",
+  "dependencies": {
+    "electron": "^20.0.1"
+  }
+}
