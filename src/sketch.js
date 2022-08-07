@@ -15,6 +15,7 @@ function draw() {
     background(0);
     grid.show();
     if(mouseIsPressed) {
+        frameRate(120);
         let x = Math.floor(mouseX / grid.pixelw);
         let y = Math.floor(mouseY / grid.pixelh);
         if(x >= 0 && x < grid.c && y >= 0 && y < grid.r) {
@@ -24,10 +25,10 @@ function draw() {
                 grid.set(0, x, y);
         }
     } else {
+        frameRate(30);
         if(!paused)
             grid.step();
     }
-    frameRate(30);
 }
 function keyPressed() {
     if(keyCode === ENTER)
@@ -54,5 +55,9 @@ function genRandomArbitrary(min, max) {
 function windowResized() { 
     resizeCanvas(window.innerWidth, window.innerHeight);
     reset_grid();
+}
+function setNewRules() {
+    let rules = document.getElementById("rules").value
+    grid = new Grid(pixelSize, rules)
 }
 var reset_grid = () => { grid = new Grid(pixelSize, rule); }

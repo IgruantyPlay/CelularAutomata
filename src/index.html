@@ -11,6 +11,14 @@
     <script src="sketch.js"></script>
 </head>
     <body>
+        <div class="edit-ui">
+            <div class="tile-container"></div>
+                <input class="edit-ui tile" type="text" id="rules" value="S:23 B:3" placeholder="S:012... B:012..."><br>
+            
+                <button class="edit-ui tile" onclick="setNewRules()">Set Rules</button>
+                <button class="edit-ui tile" onclick="reset_grid()">Reset Board</button>
+            </div>
+        </div>
         <main></main>
     </body>
 </html>
