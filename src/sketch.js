@@ -1,5 +1,5 @@
 const pixelSize = 16;
-const rule = "S:23 B:3" // interchangable
+var rule = "S:23 B:3" // interchangable
 let grid;
 let paused = false;
 
@@ -58,6 +58,7 @@ function windowResized() {
 }
 function setNewRules() {
     let rules = document.getElementById("rules").value
-    grid = new Grid(pixelSize, rules)
+    rule = rules;
+    reset_grid();
 }
 var reset_grid = () => { grid = new Grid(pixelSize, rule); }
